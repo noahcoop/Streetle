@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import Map from "./components/map";
 import { useEffect, useState } from "react";
 import { Guess } from "./types/guess";
+import InputArea from './components/inputArea'
 
 export default function Home() {
   const [todayGuess, setTodayGuess] = useState<Guess | null>(null);
@@ -28,7 +29,7 @@ export default function Home() {
         </div>
       )}
 
-      <div>input</div>
+      <InputArea />
     </main>
   );
 }
