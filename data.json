@@ -1,0 +1,23 @@
+{ 
+  "locales":
+  [
+    {
+      "name": "New York City",
+      "lat": 40.7831,
+      "lng": -73.9712,
+      "zoom": 14
+    },
+    {
+      "name": "New York City",
+      "lat": 40.732235,
+      "lng": -73.990152,
+      "zoom": 14
+    },
+    {
+      "name": "Chicago",
+      "lat": 41.878430,
+      "lng": -87.627373,
+      "zoom": 14
+    }
+  ]
+}
