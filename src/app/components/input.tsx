@@ -31,7 +31,7 @@ export default function Input(props: {
       <input
         ref={autoFocusFn}
         type="text"
-        size={40}
+        size={24}
         disabled={props.disabled}
         onKeyDown={handleKeyDown}
         onChange={handleTextChange}
@@ -44,6 +44,7 @@ export default function Input(props: {
           <option key={idx} value={possibleAnswer} />
         ))}
       </datalist>
+      &nbsp;
       <button disabled={props.disabled} onClick={() => props.guess(inputText)}>
         Guess!
       </button>
