@@ -18,6 +18,36 @@
       "lat": 41.878430,
       "lng": -87.627373,
       "zoom": 14
+    },
+    {
+      "name": "Philadelphia",
+      "lat": 39.952331,
+      "lng": -75.163399,
+      "zoom": 14
+    },
+    {
+      "name": "Milwaukee",
+      "lat": 43.038470,
+      "lng": -87.905349,
+      "zoom": 14
+    },
+    {
+      "name": "Los Angeles",
+      "lat": 34.071555,
+      "lng": -118.247356,
+      "zoom": 14
+    },
+    {
+      "name": "Los Angeles",
+      "lat": 34.018804,
+      "lng": -118.489546,
+      "zoom": 14.5
+    },
+    {
+      "name": "Los Angeles",
+      "lat": 33.952700,
+      "lng": -118.337682,
+      "zoom": 13.8
     }
   ]
 }

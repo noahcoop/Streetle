@@ -34,6 +34,11 @@ export default function InputArea(props: {
   }, [numGuesses, props]);
 
   const guess = (guessInput: string) => {
+    if (!possibleAnswers.find((answer) => answer.toUpperCase() === guessInput.toUpperCase())) {
+      alert("Can't find this city in our database...guess again!")
+      return
+    }
+
     if (guessInput.toUpperCase() === props.answer.name.toUpperCase()) {
       props.setGameState({
         ...props.gameState,

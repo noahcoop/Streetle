@@ -5,7 +5,7 @@ import { uniq } from 'lodash'
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const possibleAnswers = data['locales']
 
-  const possibleAnswerNames = uniq(possibleAnswers.map((answer) => answer.name))
+  const possibleAnswerNames = uniq(possibleAnswers.map((answer) => answer.name)).sort()
 
   res.status(200).json(possibleAnswerNames)
 }
