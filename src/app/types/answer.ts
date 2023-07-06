@@ -1,4 +1,4 @@
-export type Guess = {
+export type Answer = {
   name: string,
   lat: number,
   lng: number,

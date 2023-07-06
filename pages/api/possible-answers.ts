@@ -3,9 +3,9 @@ import data from '../../data.json'
 import { uniq } from 'lodash'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const possibleGuesses = data['locales']
+  const possibleAnswers = data['locales']
 
-  const possibleGuessNames = uniq(possibleGuesses.map((guess) => guess.name))
+  const possibleAnswerNames = uniq(possibleAnswers.map((answer) => answer.name))
 
-  res.status(200).json(possibleGuessNames)
+  res.status(200).json(possibleAnswerNames)
 }
