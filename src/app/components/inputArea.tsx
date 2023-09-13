@@ -55,7 +55,7 @@ export default function InputArea(props: {
   };
 
   return (
-    <div>
+    <div style={{display: 'flex', flexDirection: 'column',gap: 8}}>
       {Array.from(Array(6).keys()).map((idx) => (
         <Input
           key={idx}

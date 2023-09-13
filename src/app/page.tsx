@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Answer } from "./types/answer";
 import InputArea from "./components/inputArea";
 import { GameState } from "./types/gameState";
+import { Modal } from "@mantine/core";
 
 const DEFAULT_GAME_STATE: GameState = {
   won: false,
@@ -16,6 +17,8 @@ const DEFAULT_GAME_STATE: GameState = {
 export default function Home() {
   const [todayAnswer, setTodayAnswer] = useState<Answer | null>(null);
   const [gameState, setGameState] = useState<GameState>(DEFAULT_GAME_STATE);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
 
   useEffect(() => {
     fetch("http://localhost:3000/api/today-answer")
@@ -27,7 +30,7 @@ export default function Home() {
 
   useEffect(() => {
     if (gameState.finished && gameState.won) {
-      alert("winner!");
+      setModalOpen(true)
     }
   }, [gameState]);
 
@@ -47,6 +50,11 @@ export default function Home() {
           />
         </>
       )}
+
+      <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="Congrats!">
+        <>
+        </>
+      </Modal>
     </main>
   );
 }

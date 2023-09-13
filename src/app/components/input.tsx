@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { Autocomplete, Button } from "@mantine/core";
 
 const MAX_GUESSES = 6;
 
@@ -22,32 +23,29 @@ export default function Input(props: {
     }
   };
 
-  const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(event.target.value);
-  };
-
   return (
-    <div>
-      <input
+    <div style={{ display: "flex", gap: 8 }}>
+      <Autocomplete
         ref={autoFocusFn}
         type="text"
-        size={24}
         disabled={props.disabled}
         onKeyDown={handleKeyDown}
-        onChange={handleTextChange}
+        onChange={setInputText}
         list="dropdown"
         autoComplete="none"
         autoFocus
+        data={props.possibleAnswers}
+        limit={100}
+        size="xs"
+
       />
-      <datalist id="dropdown">
-        {props.possibleAnswers.map((possibleAnswer, idx) => (
-          <option key={idx} value={possibleAnswer} />
-        ))}
-      </datalist>
-      &nbsp;
-      <button disabled={props.disabled} onClick={() => props.guess(inputText)}>
+      <Button 
+        disabled={props.disabled}
+        onClick={() => props.guess(inputText)}
+        size="xs"
+      >
         Guess!
-      </button>
+      </Button>
     </div>
   );
 }
