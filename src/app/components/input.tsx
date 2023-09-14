@@ -9,6 +9,7 @@ export default function Input(props: {
   disabled?: boolean;
   guess: (_: string) => void;
   possibleAnswers: string[];
+  value?: string;
 }) {
   const autoFocusFn = useCallback(
     (element: any) => (element && !props.disabled ? element.focus() : null),
@@ -37,6 +38,7 @@ export default function Input(props: {
         data={props.possibleAnswers}
         limit={100}
         size="xs"
+        value={props.value}
 
       />
       <Button 

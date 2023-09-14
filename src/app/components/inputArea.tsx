@@ -4,6 +4,8 @@ import { GameState } from "../types/gameState";
 import { Answer } from "../types/answer";
 import Input from "./input";
 import { useEffect, useState } from "react";
+import { formatToTimeZone } from "date-fns-timezone";
+import { formatDateStringEST } from "../../../lib/date-format";
 
 const MAX_GUESSES = 6;
 
@@ -16,7 +18,7 @@ export default function InputArea(props: {
   const [possibleAnswers, setPossibleAnswers] = useState<string[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/possible-answers")
+    fetch("/api/possible-answers")
       .then((response) => response.json())
       .then((data) => {
         setPossibleAnswers(data);
@@ -28,7 +30,8 @@ export default function InputArea(props: {
       props.setGameState({
         ...props.gameState,
         finished: true,
-        saveTime: new Date()
+        saveTime: formatDateStringEST(new Date()),
+        fromCache: false
       });
     }
   }, [numGuesses, props]);
@@ -46,7 +49,8 @@ export default function InputArea(props: {
       finished: winningGuess,
       won: winningGuess,
       guesses: [...props.gameState.guesses, guessInput],
-      saveTime: new Date()
+      saveTime: formatDateStringEST(new Date()),
+      fromCache: false
     })
 
     setNumGuesses(numGuesses + 1);
@@ -64,6 +68,7 @@ export default function InputArea(props: {
           disabled={checkDisabled(idx)}
           guess={guess}
           possibleAnswers={possibleAnswers}
+          value={props.gameState.guesses[idx]}
         />
       ))}
     </div>

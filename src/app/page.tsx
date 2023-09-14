@@ -8,6 +8,7 @@ import InputArea from "./components/inputArea";
 import { GameState } from "./types/gameState";
 import { Modal } from "@mantine/core";
 import isToday from "date-fns/isToday";
+import parseISO from "date-fns/parseISO";
 
 const DEFAULT_GAME_STATE: GameState = {
   won: false,
@@ -51,8 +52,8 @@ export default function Home() {
     if (cachedState) {
       const parsedState = JSON.parse(cachedState) as GameState;
 
-      if (parsedState.saveTime && isToday(parsedState.saveTime)) {
-        setGameState(parsedState);
+      if (parsedState.saveTime && isToday(parseISO(parsedState.saveTime))) {
+        setGameState({...parsedState, fromCache: true});
       }
     }
 
@@ -65,7 +66,9 @@ export default function Home() {
     }
 
     if (gameState.finished) {
-      updateStreak();
+      if (!gameState.fromCache) {
+        updateStreak()
+      }
 
       setModalOpen(true);
     }
