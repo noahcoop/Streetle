@@ -7,6 +7,7 @@ import { Answer } from "./types/answer";
 import InputArea from "./components/inputArea";
 import { GameState } from "./types/gameState";
 import { Modal } from "@mantine/core";
+import isToday from "date-fns/isToday";
 
 const DEFAULT_GAME_STATE: GameState = {
   won: false,
@@ -18,19 +19,55 @@ export default function Home() {
   const [todayAnswer, setTodayAnswer] = useState<Answer | null>(null);
   const [gameState, setGameState] = useState<GameState>(DEFAULT_GAME_STATE);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [streak, setStreak] = useState<string | null>(null);
 
+  const readGameState = (): string | null => {
+    return window.localStorage.getItem("gameState");
+  };
+
+  const writeGameState = () => {
+    window.localStorage.setItem("gameState", JSON.stringify(gameState));
+  };
+
+  const readStreak = () => {
+    setStreak(window.localStorage.getItem("streak"));
+  };
+
+  const updateStreak = () => {
+    const newStreak = gameState.won ? !streak ? "1" : `${parseInt(streak) + 1}` : "0"
+    window.localStorage.setItem("streak", newStreak);
+    setStreak(newStreak);
+  };
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/today-answer")
+    fetch("/api/today-answer")
       .then((response) => response.json())
       .then((data) => {
         setTodayAnswer(data);
       });
+
+    const cachedState = readGameState();
+
+    if (cachedState) {
+      const parsedState = JSON.parse(cachedState) as GameState;
+
+      if (parsedState.saveTime && isToday(parsedState.saveTime)) {
+        setGameState(parsedState);
+      }
+    }
+
+    readStreak();
   }, []);
 
   useEffect(() => {
-    if (gameState.finished && gameState.won) {
-      setModalOpen(true)
+    if (gameState.saveTime) {
+      writeGameState();
+    }
+
+    if (gameState.finished) {
+      updateStreak();
+
+      setModalOpen(true);
     }
   }, [gameState]);
 
@@ -51,9 +88,12 @@ export default function Home() {
         </>
       )}
 
-      <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="Congrats!">
-        <>
-        </>
+      <Modal
+        opened={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Congrats!"
+      >
+        <div>Streak: {streak}</div>
       </Modal>
     </main>
   );

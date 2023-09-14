@@ -3,7 +3,6 @@
 import { GameState } from "../types/gameState";
 import { Answer } from "../types/answer";
 import Input from "./input";
-import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 
 const MAX_GUESSES = 6;
@@ -29,6 +28,7 @@ export default function InputArea(props: {
       props.setGameState({
         ...props.gameState,
         finished: true,
+        saveTime: new Date()
       });
     }
   }, [numGuesses, props]);
@@ -39,13 +39,15 @@ export default function InputArea(props: {
       return
     }
 
-    if (guessInput.toUpperCase() === props.answer.name.toUpperCase()) {
-      props.setGameState({
-        ...props.gameState,
-        finished: true,
-        won: true,
-      });
-    }
+    const winningGuess = guessInput.toUpperCase() === props.answer.name.toUpperCase()
+
+    props.setGameState({
+      ...props.gameState,
+      finished: winningGuess,
+      won: winningGuess,
+      guesses: [...props.gameState.guesses, guessInput],
+      saveTime: new Date()
+    })
 
     setNumGuesses(numGuesses + 1);
   };
