@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import {
   GoogleMap,
-  TransitLayer,
   useJsApiLoader,
 } from "@react-google-maps/api";
 import { Answer } from "../types/answer";
@@ -54,10 +53,20 @@ function Map(props: { answer: Answer }) {
           gap: 8,
         }}
       >
-        <Button onClick={zoomIn} disabled={zoom >= MAX_ZOOM} size="xs" style={{fontSize: 18}}>
+        <Button
+          onClick={zoomIn}
+          disabled={zoom >= MAX_ZOOM}
+          size="xs"
+          style={{ fontSize: 18 }}
+        >
           +
         </Button>
-        <Button onClick={zoomOut} disabled={zoom <= MIN_ZOOM} size="xs" style={{fontSize: 18}}>
+        <Button
+          onClick={zoomOut}
+          disabled={zoom <= MIN_ZOOM}
+          size="xs"
+          style={{ fontSize: 18 }}
+        >
           -
         </Button>
       </div>

@@ -106,7 +106,7 @@ export default function Home() {
         onClose={() => setModalOpen(false)}
         title={modalMessage()}
       >
-        {gameState.won && <div>Your Streetle Streak: {streak}🔥</div>}
+        {gameState.won && <div>your streetle streak: {streak}🔥</div>}
       </Modal>
     </main>
   );

@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { Autocomplete, Button } from "@mantine/core";
+import '../../app/globals.css'
 
 export default function Input(props: {
   disabled?: boolean;
@@ -27,12 +28,11 @@ export default function Input(props: {
         autoComplete="none"
         autoFocus
         data={props.possibleAnswers}
-        limit={100}
+        limit={props.possibleAnswers.length}
         size="xs"
         value={props.value}
-
       />
-      <Button 
+      <Button
         disabled={props.disabled}
         onClick={() => props.guess(inputText)}
         size="xs"
