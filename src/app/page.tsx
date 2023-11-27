@@ -9,6 +9,8 @@ import { GameState } from "./types/gameState";
 import { Modal } from "@mantine/core";
 import isToday from "date-fns/isToday";
 import parseISO from "date-fns/parseISO";
+import { dateSpecificRandom } from "../../lib/random";
+import { loseMessages, winMessages } from "../../lib/messaging";
 
 const DEFAULT_GAME_STATE: GameState = {
   won: false,
@@ -39,6 +41,13 @@ export default function Home() {
     window.localStorage.setItem("streak", newStreak);
     setStreak(newStreak);
   };
+  
+  const modalMessage = () => {
+    const rng = dateSpecificRandom()
+    const messagesList = gameState.won ? winMessages : loseMessages
+    const messageIndex = Math.floor(rng*messagesList.length)
+    return messagesList[messageIndex]
+  }
 
   useEffect(() => {
     fetch("/api/today-answer")
@@ -72,6 +81,7 @@ export default function Home() {
 
       setModalOpen(true);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState]);
 
   return (
@@ -94,9 +104,9 @@ export default function Home() {
       <Modal
         opened={modalOpen}
         onClose={() => setModalOpen(false)}
-        title="Congrats!"
+        title={modalMessage()}
       >
-        <div>Streak: {streak}</div>
+        {gameState.won && <div>Your Streetle Streak: {streak}🔥</div>}
       </Modal>
     </main>
   );

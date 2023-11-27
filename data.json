@@ -54,6 +54,90 @@
       "lat": 36.100837,
       "lng": -115.172820,
       "zoom": 14
+    },
+    {
+      "name": "Toronto",
+      "lat": 43.641709,
+      "lng": -79.387407,
+      "zoom": 14
+    },
+    {
+      "name": "Vancouver",
+      "lat": 49.284107,
+      "lng": -123.128448,
+      "zoom": 14
+    },
+    {
+      "name": "Barcelona",
+      "lat": 41.386759,
+      "lng": 2.172977,
+      "zoom": 13
+    },
+    {
+      "name": "Lisbon",
+      "lat": 38.718714,
+      "lng": -9.137852,
+      "zoom": 14
+    },
+    {
+      "name": "Gibraltar",
+      "lat": 36.140265,
+      "lng": -5.352675,
+      "zoom": 15
+    },
+    {
+      "name": "Tunis",
+      "lat": 36.797675,
+      "lng": 10.183637,
+      "zoom": 15
+    },
+    {
+      "name": "Rio de Janeiro",
+      "lat": -22.905533,
+      "lng": -43.175179,
+      "zoom": 15
+    },
+    {
+      "name": "Sydney",
+      "lat": -33.861972,
+      "lng": 151.210672,
+      "zoom": 14
+    },
+    {
+      "name": "Singapore",
+      "lat": 1.296181,
+      "lng": 103.868438,
+      "zoom": 14
+    },
+    {
+      "name": "Tokyo",
+      "lat": 35.684410,
+      "lng": 139.753696,
+      "zoom": 12
+    },
+    {
+      "name": "Amsterdam",
+      "lat": 52.367591,
+      "lng": 4.891039,
+      "zoom": 12
+    },
+    {
+      "name": "Paris",
+      "lat": 48.860745,
+      "lng": 2.326679,
+      "zoom": 12
+    },
+    {
+      "name": "Mexico City",
+      "lat": 19.419839,
+      "lng": -99.088112,
+      "zoom": 12
+    },
+    {
+      "name": "Kuala Lumpur",
+      "lat": 3.146372,
+      "lng": 101.694785,
+      "zoom": 13
     }
   ]
 }
