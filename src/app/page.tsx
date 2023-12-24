@@ -105,6 +105,9 @@ export default function Home() {
         opened={modalOpen}
         onClose={() => setModalOpen(false)}
         title={modalMessage()}
+        removeScrollProps={{
+          enabled: false
+        }}
       >
         {gameState.won && <div>your streetle streak: {streak}🔥</div>}
       </Modal>

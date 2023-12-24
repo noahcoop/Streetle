@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@mantine/core": "^6.0.20",
-    "@mantine/hooks": "^6.0.20",
+    "@mantine/core": "^7.3.2",
+    "@mantine/hooks": "^7.3.2",
     "@react-google-maps/api": "^2.18.1",
     "@types/node": "20.3.1",
     "@types/react": "18.2.14",

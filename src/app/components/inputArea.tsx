@@ -6,6 +6,7 @@ import Input from "./input";
 import { useEffect, useState } from "react";
 import { formatToTimeZone } from "date-fns-timezone";
 import { formatDateStringEST } from "../../../lib/date-format";
+import { GuessResult } from "../types/guessResult";
 
 const MAX_GUESSES = 6;
 
@@ -36,10 +37,10 @@ export default function InputArea(props: {
     }
   }, [numGuesses, props]);
 
-  const guess = (guessInput: string) => {
+  const guess = (guessInput: string): GuessResult => {
     if (!possibleAnswers.find((answer) => answer.toUpperCase() === guessInput.toUpperCase())) {
       alert("Can't find this city in our database...guess again!")
-      return
+      return 'invalid'
     }
 
     const winningGuess = guessInput.toUpperCase() === props.answer.name.toUpperCase()
@@ -54,6 +55,8 @@ export default function InputArea(props: {
     })
 
     setNumGuesses(numGuesses + 1);
+
+    return winningGuess ? 'correct' : 'wrong'
   };
 
   const checkDisabled = (idx: number) => {
