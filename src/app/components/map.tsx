@@ -12,11 +12,11 @@ const containerStyle = {
   height: "400px",
 };
 
-const MIN_ZOOM = 14;
-const MAX_ZOOM = 16;
-
 function Map(props: { answer: Answer }) {
   const [zoom, setZoom] = useState(props.answer.zoom ?? 14);
+
+  const MIN_ZOOM = props.answer.zoom ?? 14;
+  const MAX_ZOOM = props.answer.zoom ? props.answer.zoom + 2 : 16;
 
   const { isLoaded } = useJsApiLoader({
     id: "streetle-no-label",
