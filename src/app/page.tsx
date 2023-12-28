@@ -110,6 +110,7 @@ export default function Home() {
         }}
       >
         {gameState.won && <div>your streetle streak: {streak}🔥</div>}
+        {(!gameState.won && todayAnswer) && <div>the correct answer was: {todayAnswer.name}🔥</div>}
       </Modal>
     </main>
   );
