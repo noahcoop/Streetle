@@ -15,7 +15,7 @@ export default function InputArea(props: {
   gameState: GameState;
   setGameState: (_: GameState) => void;
 }) {
-  const [numGuesses, setNumGuesses] = useState<number>(0);
+  const [numGuesses, setNumGuesses] = useState<number>(props.gameState.guesses.length ?? 0);
   const [possibleAnswers, setPossibleAnswers] = useState<string[]>([]);
 
   useEffect(() => {
