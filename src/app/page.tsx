@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import { Answer } from "./types/answer";
 import InputArea from "./components/inputArea";
 import { GameState } from "./types/gameState";
-import { Modal } from "@mantine/core";
+import { Button, Modal } from "@mantine/core";
 import isToday from "date-fns/isToday";
 import parseISO from "date-fns/parseISO";
 import { dateSpecificRandom } from "../../lib/random";
 import { loseMessages, winMessages } from "../../lib/messaging";
+import { formatDateStringEST } from "../../lib/date-format";
 
 const DEFAULT_GAME_STATE: GameState = {
   won: false,
@@ -84,6 +85,22 @@ export default function Home() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState]);
 
+  const shareResult = async () => {
+    const date = formatDateStringEST(new Date())
+    const pluralizedGuess = gameState.guesses.length === 1 ? 'guess' : 'guesses'
+    const shareText = gameState.won ? `🔥 i got today's streetle in ${gameState.guesses.length} ${pluralizedGuess}!` : `didn't get today's streetle :/`
+    const url = 'https://streetle-by-noah.vercel.app/'
+
+    if ("share" in navigator) {
+      await navigator.share({
+        title: `streetle ${date}`,
+        text: `${shareText}\n${url}`,
+      })
+    } else {
+      alert("Share not supported by your browser")
+    }
+  }
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -111,6 +128,8 @@ export default function Home() {
       >
         {gameState.won && <div>your streetle streak: {streak}🔥</div>}
         {(!gameState.won && todayAnswer) && <div>the correct answer was: {todayAnswer.name}</div>}
+        <br />
+        <Button size="xs" onClick={shareResult}>share!</Button>
       </Modal>
     </main>
   );

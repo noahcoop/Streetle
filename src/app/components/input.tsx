@@ -21,9 +21,9 @@ export default function Input(props: {
 
   const getResultText = () => {
     if (inputResult === "correct") {
-      return "Right!"
+      return "Yes! ✅"
     } else if (inputResult === "wrong") {
-      return "Wrong!"
+      return "No 😭😭"
     } else {
       return "Guess!"
     }
