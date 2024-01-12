@@ -88,7 +88,8 @@ export default function Home() {
   const shareResult = async () => {
     const date = formatDateStringEST(new Date())
     const pluralizedGuess = gameState.guesses.length === 1 ? 'guess' : 'guesses'
-    const shareText = gameState.won ? `🔥 i got today's streetle in ${gameState.guesses.length} ${pluralizedGuess}!` : `didn't get today's streetle :/`
+    const winText = `streetle ${date}\ni got today's streetle in ${gameState.guesses.length} ${pluralizedGuess}!\n${streak}🔥\n`
+    const shareText = gameState.won ? winText : `didn't get today's streetle :/`
     const url = 'https://streetle-by-noah.vercel.app/'
 
     if ("share" in navigator) {
